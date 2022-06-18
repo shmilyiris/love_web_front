@@ -1,0 +1,28 @@
+[
+    {
+      "src": "../assets/images/1.jpg",
+      "href": " /1",
+      "info": "一些图片描述文字"
+    },
+    {
+      "src": "../assets/images/2.jpg",
+      "href": " /2",
+      "info": "一些图片描述文字"
+    },
+    {
+      "src": "../assets/images/3.jpg",
+      "href": " /3",
+      "info": "一些图片描述文字"
+    },
+    {
+      "src": "../assets/images/4.jpg",
+      "href": " /4",
+      "info": "一些图片描述文字"
+    },
+    {
+      "src": "../assets/images/5.jpg",
+      "href": " /5",
+      "info": "一些图片描述文字"
+    }
+  ]
+  
