@@ -24,7 +24,7 @@ div img {
 
 div:hover {
     transform: scale(1.06);
-    transition: 1.1s;
+    transition: 2s;
     cursor: pointer;
 }
 

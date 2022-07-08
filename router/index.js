@@ -3,6 +3,9 @@ import HomeView from '../views/HomeView'
 import CheckInView from '../views/CheckInView'
 import PhotoAlbumView from '../views/PhotoAlbumView'
 import NotFoundView from '../views/NotFoundView'
+import RegisterView from '../views/RegisterView'
+import LoginView from '../views/LoginView'
+import PhotoPostView from '../views/PhotoPostView'
 
 const routes = [
     {
@@ -26,10 +29,30 @@ const routes = [
         component: CheckInView
     },
     {
+        path: '/johnson_iris/login',
+        name: 'login',
+        component: LoginView,
+    },
+    {
+        path: '/johnson_iris/register',
+        name: 'register',
+        component: RegisterView,
+    },
+    {
         path: '/johnson_iris/404',
         name: '404',
         component: NotFoundView,
-    }
+    },
+    {
+        path: '/johnson_iris/photopost',
+        name: 'photo-post',
+        component: PhotoPostView,
+    },
+    {
+        path: '/johnson_iris/:catchAll(.*)',
+        name: '404',
+        component: NotFoundView,
+    },
 ]
 
 const router = createRouter({
