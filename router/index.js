@@ -6,6 +6,7 @@ import NotFoundView from '../views/NotFoundView'
 import RegisterView from '../views/RegisterView'
 import LoginView from '../views/LoginView'
 import PhotoPostView from '../views/PhotoPostView'
+import CheckInEditView from '../views/CheckInEditView'
 
 const routes = [
     {
@@ -47,6 +48,11 @@ const routes = [
         path: '/johnson_iris/photopost',
         name: 'photo-post',
         component: PhotoPostView,
+    },
+    {
+        path: '/johnson_iris/checkin-edit/:eventid/',
+        name: 'checkin-edit',
+        component: CheckInEditView,
     },
     {
         path: '/johnson_iris/:catchAll(.*)',

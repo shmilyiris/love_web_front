@@ -22,27 +22,47 @@
             <font-awesome-icon icon="trash" />
         </a> -->
 
-        <a class="controller" href="" v-if="!item.finished" data-mdb-toggle="tooltip" style="color:red; margin-right:10px;">
-            去完成
-        </a>
+        <router-link :to="{'name': 'checkin-edit', 'params': { eventid: item.id }}">
+            <div class="controller" v-if="!item.is_finished" data-mdb-toggle="tooltip" style="color:red; margin-right:10px;">
+                去完成
+            </div>
+        </router-link>   
 
-        <div class="controller" v-if="item.finished" data-mdb-toggle="tooltip" style="font-weight:bold; color:green; margin-right:10px; display:inline-block;">
-            已完成
-        </div>
+        <router-link :to="{'name': 'checkin-edit', 'params': { eventid: item.id }}">
+            <div class="controller" v-if="item.is_finished" data-mdb-toggle="tooltip" style="font-weight:bold; color:green; margin-right:10px;">
+                已完成
+            </div>
+        </router-link>
+
         
-        <a class="controller" href="" data-mdb-toggle="tooltip" style="color:black;">
+        <div class="controller" @click="deleteEvent(item.id)" data-mdb-toggle="tooltip" style="color:black;">
             删除
-        </a>
+        </div>
 
     </div>
 </div> 
 </template>
 
 <script>
+import {useStore} from 'vuex'
 export default {
     props: ["item"],
-    data() {
+    setup() {
+        const store = useStore();
+        const deleteEvent = del_id => {
+            store.dispatch("deleteEvent", {
+                id: del_id,
+                success() {
+                    location.reload();
+                },
+                error() {
+
+                }
+            });
+        };
+
         return {
+            deleteEvent,
             label2color: {
                 '武汉': "rgba(173,216,230, 0.9)",
                 '北京': "rgba(255,0,0, 0.4)",
@@ -55,7 +75,7 @@ export default {
                 '美剧': "yellowgreen"
             },
         };
-    },
+    }
 }
 </script>
 
@@ -84,11 +104,10 @@ export default {
 }
 .controller {
     font-size: 3px;
+    display: inline-block;
 }
-a {
-    text-decoration: none;
-}
-a:hover {
+.controller:hover {
+    cursor: pointer;
     background-color: lightgrey;
 }
 </style>

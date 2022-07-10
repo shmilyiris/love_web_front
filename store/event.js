@@ -32,7 +32,7 @@ const ModuleEvent = {
             // 确认access有效
             context.commit("confirm_access_valid");
             let access = localStorage.getItem("access");
-
+            
             $.ajax({
                 url: "http://101.35.183.71:5288/johnson_iris/event/event-view/",
                 type: "POST",
@@ -40,6 +40,7 @@ const ModuleEvent = {
                     category: data.category,
                     label: data.label,
                     content: data.content,
+                    is_finished: data.is_finished,
                 },
                 headers: {
                     'Authorization': "Bearer " + access,
@@ -73,6 +74,85 @@ const ModuleEvent = {
                     }
                 },
                 error() {
+                }
+            });
+        },
+
+        getEventById(context, data) {
+            // 确认access有效
+            context.commit("confirm_access_valid");
+            let access = localStorage.getItem("access");
+
+            $.ajax({
+                url: "http://101.35.183.71:5288/johnson_iris/event/event-edit/",
+                type: "GET",
+                data: {
+                    pk: data.eventid,
+                },
+                headers: {
+                    'Authorization': "Bearer " + access,
+                },
+                success(resp) {
+                    if (resp.result === "success") {
+                        data.success(resp.event);
+                    }
+                    else data.error();
+                },
+                error() {
+                    data.error();
+                }
+            });
+        },
+
+        postEventById(context, data) {
+            // 确认access有效
+            context.commit("confirm_access_valid");
+            let access = localStorage.getItem("access");
+
+            $.ajax({
+                url: "http://101.35.183.71:5288/johnson_iris/event/event-edit/",
+                type: "POST",
+                data: {
+                    pk: data.eventid,
+                    content: data.content,
+                    label: data.label,
+                    info: data.info,
+                },
+                headers: {
+                    'Authorization': "Bearer " + access,
+                },
+                success(resp) {
+                    if (resp.result === "success") {
+                        data.success(resp.event);
+                    }
+                    else data.error();
+                },
+                error() {
+                    data.error();
+                }
+            });
+        },
+
+        deleteEvent(context, data) {
+            // 确认access有效
+            context.commit("confirm_access_valid");
+            let access = localStorage.getItem("access");
+
+            $.ajax({
+                url: "http://101.35.183.71:5288/johnson_iris/event/event-edit/",
+                type: "DELETE",
+                data: {
+                    pk: data.id,
+                },
+                headers: {
+                    'Authorization': "Bearer " + access,
+                },
+                success(resp) {
+                    if (resp.result === "success") data.success();
+                    else data.error();
+                },
+                error() {
+                    data.error();
                 }
             });
         }
